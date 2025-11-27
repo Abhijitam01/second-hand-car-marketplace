@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Briefcase, MapPin, Clock, ChevronRight, Users, Heart, Zap, Coffee, GraduationCap, Sparkles, Search, Building } from 'lucide-react'
+import { Briefcase, MapPin, Clock, ChevronRight, Users, Heart, Zap, Coffee, GraduationCap, Sparkles, Search, Building, Rocket, Globe, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -9,12 +9,12 @@ import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
 const benefits = [
-  { icon: Heart, title: 'Health Coverage', description: 'Comprehensive health insurance for you and your family' },
-  { icon: GraduationCap, title: 'Learning Budget', description: '₹50,000 annual budget for courses and certifications' },
-  { icon: Coffee, title: 'Flexible Work', description: 'Hybrid work options and flexible hours' },
-  { icon: Zap, title: 'Performance Bonus', description: 'Quarterly bonuses based on performance' },
-  { icon: Users, title: 'Team Events', description: 'Regular team outings and annual retreats' },
-  { icon: Building, title: 'Modern Office', description: 'State-of-the-art workspace with all amenities' },
+  { icon: Heart, title: 'Health Coverage', description: 'Comprehensive health insurance for you and your family', iconBg: 'bg-rose-500' },
+  { icon: GraduationCap, title: 'Learning Budget', description: '₹50,000 annual budget for courses and certifications', iconBg: 'bg-violet-500' },
+  { icon: Coffee, title: 'Flexible Work', description: 'Hybrid work options and flexible hours', iconBg: 'bg-amber-500' },
+  { icon: Zap, title: 'Performance Bonus', description: 'Quarterly bonuses based on performance', iconBg: 'bg-teal-500' },
+  { icon: Users, title: 'Team Events', description: 'Regular team outings and annual retreats', iconBg: 'bg-cyan-500' },
+  { icon: Building, title: 'Modern Office', description: 'State-of-the-art workspace with all amenities', iconBg: 'bg-indigo-500' },
 ]
 
 const openPositions = [
@@ -32,6 +32,8 @@ const openPositions = [
       'Strong analytical and communication skills',
       'Experience with Agile methodologies',
     ],
+    badgeBg: 'bg-violet-500',
+    badgeText: 'text-white',
   },
   {
     id: 2,
@@ -47,6 +49,8 @@ const openPositions = [
       'Knowledge of database systems (PostgreSQL, MongoDB)',
       'Understanding of CI/CD pipelines',
     ],
+    badgeBg: 'bg-cyan-500',
+    badgeText: 'text-white',
   },
   {
     id: 3,
@@ -62,6 +66,8 @@ const openPositions = [
       'Strong negotiation skills',
       'Valid driving license with clean record',
     ],
+    badgeBg: 'bg-teal-500',
+    badgeText: 'text-white',
   },
   {
     id: 4,
@@ -77,6 +83,8 @@ const openPositions = [
       'Strong problem-solving abilities',
       'Excellent communication skills',
     ],
+    badgeBg: 'bg-rose-500',
+    badgeText: 'text-white',
   },
   {
     id: 5,
@@ -92,6 +100,8 @@ const openPositions = [
       'Strong understanding of digital marketing',
       'Creative thinking and analytical skills',
     ],
+    badgeBg: 'bg-amber-500',
+    badgeText: 'text-white',
   },
 ]
 
@@ -109,54 +119,91 @@ export default function CareersPage() {
   })
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        {/* Background Effects */}
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
             alt="Team collaboration"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
         </div>
+        
+        {/* Subtle Background Accents */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-violet-500/10 dark:bg-violet-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 dark:bg-white/[0.06] border border-border/50 dark:border-white/[0.08] mb-6">
-              <Briefcase className="w-4 h-4 text-primary dark:text-[#7fe8d7]" />
-              <span className="text-sm text-muted-foreground">Join Our Team</span>
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/10 dark:bg-violet-500/20 border border-violet-500/30 mb-8 backdrop-blur-sm">
+              <Rocket className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+              <span className="text-sm font-medium text-violet-700 dark:text-violet-300">Join Our Team</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-              Build the Future of
-              <span className="text-primary dark:text-[#7fe8d7]"> Automotive Retail</span>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+              Build the Future of{' '}
+              <span className="text-violet-600 dark:text-violet-400">Automotive Retail</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            
+            <p className="text-lg lg:text-xl text-foreground/80 max-w-2xl mx-auto">
               Join a team of passionate individuals who are revolutionizing how people buy and sell luxury vehicles.
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 mt-10">
+              {[
+                { icon: Users, label: '50+ Team Members', iconBg: 'bg-teal-500' },
+                { icon: Globe, label: '5 Cities', iconBg: 'bg-violet-500' },
+                { icon: Star, label: '4.8 Glassdoor', iconBg: 'bg-amber-500' },
+              ].map((stat, index) => (
+                <div key={index} className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
+                  <div className={`w-8 h-8 rounded-lg ${stat.iconBg} flex items-center justify-center`}>
+                    <stat.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 bg-muted/30 dark:bg-white/[0.02]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Why Work With Us?</h2>
-            <p className="text-muted-foreground">We offer competitive benefits to help you thrive</p>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-muted/50 dark:bg-muted" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/10 dark:bg-rose-500/20 border border-rose-500/30 mb-6">
+              <Heart className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+              <span className="text-sm font-medium text-rose-700 dark:text-rose-300">Perks & Benefits</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Why Work{' '}
+              <span className="text-rose-600 dark:text-rose-400">With Us?</span>
+            </h2>
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+              We offer competitive benefits to help you thrive
+            </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit) => {
               const IconComponent = benefit.icon
               return (
-                <Card key={benefit.title} className="border-border/50 hover:border-primary/30 transition-all">
+                <Card 
+                  key={benefit.title} 
+                  className="group border-border hover:border-border/80 transition-all duration-300 hover:shadow-lg"
+                >
                   <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 dark:bg-[#7fe8d7]/10 flex items-center justify-center mb-4">
-                      <IconComponent className="w-6 h-6 text-primary dark:text-[#7fe8d7]" />
+                    <div className={`w-14 h-14 rounded-xl ${benefit.iconBg} flex items-center justify-center mb-5 shadow-md`}>
+                      <IconComponent className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                    <h3 className="font-bold text-foreground mb-2 text-lg">{benefit.title}</h3>
+                    <p className="text-sm text-foreground/70">{benefit.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -166,22 +213,29 @@ export default function CareersPage() {
       </section>
 
       {/* Open Positions */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Open Positions</h2>
-            <p className="text-muted-foreground">Find your next opportunity</p>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 mb-6">
+              <Briefcase className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+              <span className="text-sm font-medium text-teal-700 dark:text-teal-300">Open Roles</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Open{' '}
+              <span className="text-teal-600 dark:text-teal-400">Positions</span>
+            </h2>
+            <p className="text-lg text-foreground/80">Find your next opportunity</p>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/50" />
               <Input
                 placeholder="Search positions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-muted/50"
+                className="pl-12 h-12 bg-card border-border"
               />
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2">
@@ -191,7 +245,7 @@ export default function CareersPage() {
                   variant={selectedDepartment === dept ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedDepartment(dept)}
-                  className="whitespace-nowrap"
+                  className={`whitespace-nowrap ${selectedDepartment === dept ? 'bg-teal-600 hover:bg-teal-700 text-white' : 'border-border hover:border-teal-500/50'}`}
                 >
                   {dept === 'all' ? 'All Departments' : dept}
                 </Button>
@@ -202,24 +256,28 @@ export default function CareersPage() {
           {/* Job Listings */}
           <div className="space-y-4">
             {filteredPositions.length === 0 ? (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <Briefcase className="w-12 h-12 mx-auto text-muted-foreground/50 mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">No positions found</h3>
-                  <p className="text-muted-foreground">Try adjusting your search or filters</p>
+              <Card className="border-border">
+                <CardContent className="py-16 text-center">
+                  <div className="w-16 h-16 rounded-xl bg-muted flex items-center justify-center mx-auto mb-4">
+                    <Briefcase className="w-8 h-8 text-foreground/40" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">No positions found</h3>
+                  <p className="text-foreground/70">Try adjusting your search or filters</p>
                 </CardContent>
               </Card>
             ) : (
               filteredPositions.map((position) => (
-                <Card key={position.id} className="hover:border-primary/30 transition-all">
+                <Card key={position.id} className="group border-border hover:border-border/80 transition-all duration-300 hover:shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-foreground">{position.title}</h3>
-                          <Badge variant="outline" className="text-xs">{position.department}</Badge>
+                        <div className="flex items-center gap-3 mb-3">
+                          <h3 className="text-xl font-bold text-foreground">{position.title}</h3>
+                          <Badge className={`${position.badgeBg} ${position.badgeText} border-0 text-xs`}>
+                            {position.department}
+                          </Badge>
                         </div>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/70">
                           <span className="flex items-center gap-1.5">
                             <MapPin className="w-4 h-4" />
                             {position.location}
@@ -237,41 +295,47 @@ export default function CareersPage() {
 
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button className="gap-2">
+                          <Button className={`gap-2 ${position.badgeBg} hover:opacity-90 text-white border-0 shadow-md`}>
                             View Details
                             <ChevronRight className="w-4 h-4" />
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-lg">
                           <DialogHeader>
-                            <DialogTitle>{position.title}</DialogTitle>
+                            <DialogTitle className="text-2xl">{position.title}</DialogTitle>
                           </DialogHeader>
                           <div className="space-y-6 pt-4">
-                            <div className="flex flex-wrap gap-3">
-                              <Badge variant="outline">{position.department}</Badge>
+                            <div className="flex flex-wrap gap-2">
+                              <Badge className={`${position.badgeBg} ${position.badgeText} border-0`}>
+                                {position.department}
+                              </Badge>
                               <Badge variant="outline">{position.location}</Badge>
                               <Badge variant="outline">{position.type}</Badge>
                               <Badge variant="outline">{position.experience}</Badge>
                             </div>
 
                             <div>
-                              <h4 className="font-semibold text-foreground mb-2">About the Role</h4>
-                              <p className="text-sm text-muted-foreground">{position.description}</p>
+                              <h4 className="font-bold text-foreground mb-2">About the Role</h4>
+                              <p className="text-foreground/80">{position.description}</p>
                             </div>
 
                             <div>
-                              <h4 className="font-semibold text-foreground mb-2">Requirements</h4>
+                              <h4 className="font-bold text-foreground mb-3">Requirements</h4>
                               <ul className="space-y-2">
                                 {position.requirements.map((req, index) => (
-                                  <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                    <Sparkles className="w-4 h-4 text-primary dark:text-[#7fe8d7] mt-0.5 flex-shrink-0" />
-                                    {req}
+                                  <li key={index} className="flex items-start gap-3">
+                                    <div className={`w-5 h-5 rounded-full ${position.badgeBg} flex items-center justify-center mt-0.5 flex-shrink-0`}>
+                                      <Sparkles className="w-3 h-3 text-white" />
+                                    </div>
+                                    <span className="text-foreground/80">{req}</span>
                                   </li>
                                 ))}
                               </ul>
                             </div>
 
-                            <Button className="w-full">Apply Now</Button>
+                            <Button className={`w-full ${position.badgeBg} hover:opacity-90 text-white border-0 shadow-md`}>
+                              Apply Now
+                            </Button>
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -285,18 +349,25 @@ export default function CareersPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-muted/30 dark:bg-white/[0.02]">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Don't See the Right Role?</h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            We're always looking for talented individuals. Send us your resume and we'll reach out when we have a position that matches your skills.
-          </p>
-          <Button size="lg" variant="outline">
-            Send Your Resume
-          </Button>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-muted/50 dark:bg-muted" />
+        
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="p-10 lg:p-14 rounded-2xl bg-card border border-border">
+            <div className="w-16 h-16 rounded-xl bg-violet-500 flex items-center justify-center mx-auto mb-6 shadow-md">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">Don't See the Right Role?</h2>
+            <p className="text-foreground/80 mb-8 max-w-2xl mx-auto">
+              We're always looking for talented individuals. Send us your resume and we'll reach out when we have a position that matches your skills.
+            </p>
+            <Button size="lg" variant="outline" className="border-2 border-violet-500/40 hover:border-violet-500/60 hover:bg-violet-500/10 text-violet-700 dark:text-violet-400 gap-2">
+              Send Your Resume
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>
   )
 }
-

@@ -1,6 +1,8 @@
 'use client'
 
-import { FileText, CheckCircle, AlertTriangle, Scale, ShoppingCart, Ban, RefreshCw, Gavel } from 'lucide-react'
+import { FileText, CheckCircle, AlertTriangle, Scale, ShoppingCart, Ban, RefreshCw, Gavel, HelpCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 const sections = [
   {
@@ -9,6 +11,7 @@ const sections = [
     content: `By accessing or using the Velaire House website and services, you agree to be bound by these Terms and Conditions. If you do not agree to all the terms, you may not access or use our services.
 
 These terms apply to all visitors, users, and others who access or use our services. We reserve the right to update or modify these terms at any time without prior notice.`,
+    iconBg: 'bg-teal-500',
   },
   {
     icon: ShoppingCart,
@@ -21,6 +24,7 @@ These terms apply to all visitors, users, and others who access or use our servi
 • All vehicles undergo a 210-point inspection before sale
 • Vehicle specifications, features, and conditions are described to the best of our knowledge
 • Minor variations in color, accessories, or features may occur`,
+    iconBg: 'bg-cyan-500',
   },
   {
     icon: Ban,
@@ -35,6 +39,7 @@ These terms apply to all visitors, users, and others who access or use our servi
 • Using automated scripts to collect information
 • Attempting to circumvent security measures
 • Transmitting viruses or other malicious code`,
+    iconBg: 'bg-rose-500',
   },
   {
     icon: Scale,
@@ -45,6 +50,7 @@ These terms apply to all visitors, users, and others who access or use our servi
 • All content on the website is protected by copyright
 • Unauthorized use may result in legal action
 • You may not reproduce, distribute, or create derivative works without permission`,
+    iconBg: 'bg-violet-500',
   },
   {
     icon: RefreshCw,
@@ -57,6 +63,7 @@ These terms apply to all visitors, users, and others who access or use our servi
 • Exchange is subject to availability of comparable vehicles
 • Return/exchange requests must be submitted in writing
 • Refunds are processed within 14 business days after vehicle inspection`,
+    iconBg: 'bg-amber-500',
   },
   {
     icon: AlertTriangle,
@@ -69,6 +76,7 @@ These terms apply to all visitors, users, and others who access or use our servi
 • Any interruption or cessation of the service
 • Vehicle performance after sale
 • Third-party actions or services`,
+    iconBg: 'bg-red-500',
   },
   {
     icon: Gavel,
@@ -79,45 +87,60 @@ These terms apply to all visitors, users, and others who access or use our servi
 • We encourage users to contact us directly for resolution of any disputes
 • Arbitration may be required before court proceedings
 • Class action lawsuits are waived to the extent permitted by law`,
+    iconBg: 'bg-indigo-500',
   },
 ]
 
 export default function TermsConditionsPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       {/* Header */}
-      <section className="py-16 border-b border-border/50">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 dark:bg-[#7fe8d7]/10 mb-6">
-            <FileText className="w-8 h-8 text-primary dark:text-[#7fe8d7]" />
+      <section className="relative py-20 lg:py-28 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-muted/50 dark:bg-muted" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-violet-500/10 dark:bg-violet-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl" />
+        
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="w-20 h-20 rounded-xl bg-violet-500 flex items-center justify-center mx-auto mb-8 shadow-lg">
+            <FileText className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Terms & Conditions</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">
+            Terms &{' '}
+            <span className="text-violet-600 dark:text-violet-400">Conditions</span>
+          </h1>
+          
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto mb-6">
             Please read these terms and conditions carefully before using our services.
           </p>
-          <p className="text-sm text-muted-foreground mt-4">Last updated: January 1, 2024</p>
+          
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
+            <CheckCircle className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+            <span className="text-sm text-foreground/70">Last updated: January 1, 2024</span>
+          </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-16">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {sections.map((section, index) => {
+          <div className="space-y-6">
+            {sections.map((section) => {
               const IconComponent = section.icon
               return (
-                <div key={section.title} className="relative">
-                  {index !== sections.length - 1 && (
-                    <div className="absolute left-6 top-16 bottom-0 w-px bg-border/50 hidden sm:block" />
-                  )}
+                <div 
+                  key={section.title} 
+                  className="p-6 lg:p-8 rounded-xl bg-card border border-border hover:border-border/80 transition-all duration-300 hover:shadow-lg"
+                >
                   <div className="flex gap-6">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 dark:bg-[#7fe8d7]/10 flex items-center justify-center">
-                      <IconComponent className="w-6 h-6 text-primary dark:text-[#7fe8d7]" />
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-xl ${section.iconBg} flex items-center justify-center shadow-md`}>
+                      <IconComponent className="w-7 h-7 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h2 className="text-xl font-semibold text-foreground mb-4">{section.title}</h2>
+                      <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-4">{section.title}</h2>
                       <div className="prose prose-gray dark:prose-invert max-w-none">
-                        <p className="text-muted-foreground whitespace-pre-line">{section.content}</p>
+                        <p className="text-foreground/80 whitespace-pre-line leading-relaxed">{section.content}</p>
                       </div>
                     </div>
                   </div>
@@ -127,18 +150,29 @@ export default function TermsConditionsPage() {
           </div>
 
           {/* Contact Section */}
-          <div className="mt-16 p-6 rounded-2xl bg-muted/30 border border-border/50 text-center">
-            <h3 className="text-lg font-semibold text-foreground mb-2">Have Questions?</h3>
-            <p className="text-muted-foreground mb-4">
-              If you have any questions about these Terms & Conditions, please contact us.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Email: legal@velairehouse.com | Phone: +91 22 1234 5678
-            </p>
+          <div className="mt-12 p-8 rounded-xl bg-violet-500/10 dark:bg-violet-500/15 border border-violet-500/30">
+            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+              <div className="w-16 h-16 rounded-xl bg-violet-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                <HelpCircle className="w-8 h-8 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-foreground mb-2">Have Questions?</h3>
+                <p className="text-foreground/80 mb-4">
+                  If you have any questions about these Terms & Conditions, please contact us.
+                </p>
+                <p className="text-sm text-foreground/70">
+                  Email: <span className="text-violet-700 dark:text-violet-400 font-medium">legal@velairehouse.com</span> | Phone: <span className="text-violet-700 dark:text-violet-400 font-medium">+91 22 1234 5678</span>
+                </p>
+              </div>
+              <Link href="/contact">
+                <Button className="bg-violet-600 hover:bg-violet-700 text-white shadow-md">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
     </div>
   )
 }
-
