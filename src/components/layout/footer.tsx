@@ -19,10 +19,10 @@ export function Footer() {
               The private reserve for limited-series icons.
             </p>
             <div className="flex gap-3 mt-4">
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <FaInstagram className="h-4 w-4" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <FaTwitter className="h-4 w-4" />
               </Link>
             </div>
@@ -39,23 +39,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Account */}
+          <div>
+            <h3 className="text-sm font-medium text-foreground mb-4">Account</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/login" className="hover:text-foreground transition-colors">Login</Link></li>
+              <li><Link href="/profile" className="hover:text-foreground transition-colors">Profile</Link></li>
+              <li><Link href="/orders" className="hover:text-foreground transition-colors">My Orders</Link></li>
+              <li><Link href="/wishlist" className="hover:text-foreground transition-colors">Wishlist</Link></li>
+            </ul>
+          </div>
+
+          {/* Company & Legal */}
           <div>
             <h3 className="text-sm font-medium text-foreground mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/about" className="hover:text-foreground transition-colors">About</Link></li>
               <li><Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
               <li><Link href="/careers" className="hover:text-foreground transition-colors">Careers</Link></li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-medium text-foreground mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy</Link></li>
-              <li><Link href="/terms-conditions" className="hover:text-foreground transition-colors">Terms</Link></li>
-              <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refunds</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms-conditions" className="hover:text-foreground transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
         </div>

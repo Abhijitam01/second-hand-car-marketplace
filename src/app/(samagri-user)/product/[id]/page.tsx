@@ -1,11 +1,12 @@
 'use client'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
-  Heart, Share2, Star,RotateCcw, Plus, Minus,
-   ChevronLeft, ChevronRight, TrendingUp, Check,
- Clock, Users
+  Heart, Share2, Star, RotateCcw, Plus, Minus,
+  ChevronLeft, ChevronRight, TrendingUp, Check,
+  Clock, Users, ShoppingCart
 } from 'lucide-react'
 
 interface ProductData {
@@ -33,6 +34,9 @@ interface ColorOption {
 }
 
 export default function ProductDetailsPage() {
+  const router = useRouter()
+  const [isReserving, setIsReserving] = useState(false)
+  
   // Mock data for demonstration
   const displayData: ProductData = {
     id: 'veh_001',
@@ -360,14 +364,30 @@ export default function ProductDetailsPage() {
               {/* Action Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Button
-                  className="flex-1 bg-secondary text-white hover:bg-gray-900 rounded-full text-base py-4 sm:py-5 font-medium transition-colors"
-                  onClick={() => alert(`Reserved vehicle with ${quantity} booking token(s)!`)}
+                  className="flex-1 bg-secondary text-white hover:bg-gray-900 rounded-full text-base py-4 sm:py-5 font-medium transition-colors gap-2"
+                  onClick={async () => {
+                    setIsReserving(true)
+                    await new Promise(resolve => setTimeout(resolve, 1000))
+                    setIsReserving(false)
+                    router.push('/cart')
+                  }}
+                  disabled={isReserving}
                 >
-                  Reserve Vehicle
+                  {isReserving ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Adding...
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-4 h-4" />
+                      Add to Cart
+                    </>
+                  )}
                 </Button>
                 <Button
                   className="flex-1 bg-white text-secondary border border-secondary hover:bg-secondary hover:text-white rounded-full text-base py-4 sm:py-5 font-medium transition-colors"
-                  onClick={() => alert('A Velaire advisor will contact you shortly!')}
+                  onClick={() => router.push('/contact')}
                 >
                   Talk to Advisor
                 </Button>

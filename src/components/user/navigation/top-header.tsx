@@ -19,6 +19,7 @@ export default function TopNavbar() {
 
   const navLinks = [
     { label: 'Collection', href: '/product' },
+    { label: 'Orders', href: '/orders' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ]

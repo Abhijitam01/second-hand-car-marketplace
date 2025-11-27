@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Minus, Plus, Trash2, Heart, ShoppingBag, Truck, Shield, MapPin, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import ChangeAddressDialog from '@/components/cart/change-address-dialog'
+import Link from 'next/link'
 
 
 interface CartItem {
@@ -57,9 +59,11 @@ const cartItems: CartItem[] = [
 ];
 
 export default function CartPage() {
+  const router = useRouter()
   const [items, setItems] = useState<CartItem[]>(cartItems)
   const [selectedItems, setSelectedItems] = useState<number[]>(items.map(i => i.id))
   const [addressDialogOpen, setAddressDialogOpen] = useState(false)
+  const [isOrdering, setIsOrdering] = useState(false)
 
 
 
@@ -82,6 +86,15 @@ export default function CartPage() {
   const total = subtotal + platformFee - coupons
   const deliveryFee = 0
 
+  const handlePlaceOrder = async () => {
+    setIsOrdering(true)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    // In a real app, you would create the order in backend
+    setIsOrdering(false)
+    // Navigate to orders page
+    router.push('/orders')
+  }
 
   if (items.length === 0) {
     return (
@@ -90,7 +103,11 @@ export default function CartPage() {
           <ShoppingBag className="h-24 w-24 mx-auto text-muted-foreground mb-4" />
           <h2 className="text-2xl font-semibold text-foreground mb-2">Your cart is empty</h2>
           <p className="text-muted-foreground mb-6">Add some items to get started</p>
-          <Button size="lg" className="px-8 bg-secondary text-secondary-foreground hover:opacity-90">Continue Shopping</Button>
+          <Link href="/product">
+            <Button size="lg" className="px-8 bg-secondary text-secondary-foreground hover:opacity-90">
+              Continue Shopping
+            </Button>
+          </Link>
         </div>
       </div>
     )
@@ -249,8 +266,20 @@ export default function CartPage() {
                 </p>
               </div>
 
-              <Button size="lg" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-200 font-semibold neon-glow">
-                Place Order
+              <Button 
+                size="lg" 
+                className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-200 font-semibold neon-glow"
+                onClick={handlePlaceOrder}
+                disabled={isOrdering}
+              >
+                {isOrdering ? (
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Processing...
+                  </span>
+                ) : (
+                  'Place Order'
+                )}
               </Button>
 
               {/* Security Badge */}

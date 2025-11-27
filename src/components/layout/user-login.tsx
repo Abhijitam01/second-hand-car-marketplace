@@ -1,32 +1,69 @@
 'use client'
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import Link from "next/link";
+import { Sparkles } from "lucide-react";
 
 export default function UserLoginPage() {
-    const [step, setStep] = useState<'login' | 'otp'>('login');
+    const router = useRouter();
+    const [mode, setMode] = useState<'login' | 'signup'>('login');
+    const [step, setStep] = useState<'form' | 'otp'>('form');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [otpValue, setOtpValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSendOTP = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSendOTP = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log('Sending OTP to:', phoneNumber);
+        if (!phoneNumber) return;
+        
+        setIsLoading(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsLoading(false);
         setStep('otp');
     };
 
-    const handleVerifyOTP = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleVerifyOTP = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log('Verifying OTP:', otpValue);
+        if (otpValue.length !== 6) return;
+        
+        setIsLoading(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Store user info in localStorage (for demo purposes)
+        localStorage.setItem('user', JSON.stringify({
+            name: name || 'User',
+            phone: phoneNumber,
+            email: email,
+            isLoggedIn: true
+        }));
+        
+        setIsLoading(false);
+        // Redirect to profile or home
+        router.push('/profile');
     };
 
-    const handleGoogleAuth = () => console.log('Google authentication initiated');
+    const handleGoogleAuth = () => {
+        // Simulate Google auth
+        localStorage.setItem('user', JSON.stringify({
+            name: 'Google User',
+            email: 'user@gmail.com',
+            isLoggedIn: true
+        }));
+        router.push('/profile');
+    };
+
     const handleResendOTP = () => console.log('Resending OTP to:', phoneNumber);
-    const handleChangePhone = () => { setStep('login'); setOtpValue(''); };
+    const handleChangePhone = () => { setStep('form'); setOtpValue(''); };
 
     // ---------------- OTP PAGE ----------------
     if (step === 'otp')
@@ -35,7 +72,9 @@ export default function UserLoginPage() {
                 <Card className="w-full max-w-md overflow-hidden shadow-xl bg-card/95 backdrop-blur-md border border-border">
                     <CardHeader>
                         <div className="w-full flex justify-center items-center mb-2">
-                            <img src="/logo.png" alt="logo" className="h-12 w-30" />
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7fe8d7] to-teal-600 flex items-center justify-center shadow-lg">
+                                <Sparkles className="w-6 h-6 text-white" />
+                            </div>
                         </div>
                         <CardTitle className="text-xl text-center text-foreground">Enter verification code</CardTitle>
                         <CardDescription className="text-center">We sent a 6-digit code to {phoneNumber}</CardDescription>
@@ -49,11 +88,15 @@ export default function UserLoginPage() {
                             </InputOTP>
 
                             <FieldDescription className="text-center mt-2">
-                                Enter the 6-digit code sent to your phone.
+                                Enter the 6-digit code sent to your phone. (Use 123456 for demo)
                             </FieldDescription>
 
-                            <Button onClick={handleVerifyOTP} className="w-full bg-primary text-primary-foreground mt-4 hover:bg-primary/90">
-                                Verify
+                            <Button 
+                                onClick={handleVerifyOTP} 
+                                className="w-full bg-primary text-primary-foreground mt-4 hover:bg-primary/90"
+                                disabled={isLoading || otpValue.length !== 6}
+                            >
+                                {isLoading ? 'Verifying...' : 'Verify & Continue'}
                             </Button>
 
                             <div className="text-center mt-3 space-y-1">
@@ -76,7 +119,7 @@ export default function UserLoginPage() {
             </div>
         );
 
-    // ---------------- LOGIN PAGE ----------------
+    // ---------------- LOGIN / SIGNUP PAGE ----------------
     return (
         <div className="flex items-center justify-center py-10">
             <Card className="w-full max-w-md overflow-hidden shadow-xl bg-card/95 backdrop-blur-md border border-border">
@@ -84,26 +127,63 @@ export default function UserLoginPage() {
                     <FieldGroup className="space-y-3">
                         <div className="text-center">
                             <div className="w-full flex justify-center items-center mb-3">
-                                <img src="/logo.png" alt="logo" className="h-12 w-30" />
+                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7fe8d7] to-teal-600 flex items-center justify-center shadow-lg">
+                                    <Sparkles className="w-6 h-6 text-white" />
+                                </div>
                             </div>
-                            <h1 className="text-3xl font-bold text-foreground">Welcome back</h1>
-                            <p className="text-muted-foreground">Login to your account</p>
+                            <h1 className="text-3xl font-bold text-foreground">
+                                {mode === 'login' ? 'Welcome back' : 'Create account'}
+                            </h1>
+                            <p className="text-muted-foreground">
+                                {mode === 'login' ? 'Login to your account' : 'Sign up to get started'}
+                            </p>
                         </div>
+
+                        {mode === 'signup' && (
+                            <>
+                                <Field>
+                                    <FieldLabel htmlFor="name">Full Name</FieldLabel>
+                                    <Input
+                                        id="name"
+                                        type="text"
+                                        placeholder="John Doe"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="bg-muted border-border text-foreground"
+                                    />
+                                </Field>
+                                <Field>
+                                    <FieldLabel htmlFor="email">Email Address</FieldLabel>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        placeholder="john@example.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="bg-muted border-border text-foreground"
+                                    />
+                                </Field>
+                            </>
+                        )}
 
                         <Field>
                             <FieldLabel htmlFor="phone">Phone Number</FieldLabel>
                             <Input
                                 id="phone"
                                 type="tel"
-                                placeholder="+1 (555) 000-0000"
+                                placeholder="+91 98765 43210"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                 className="bg-muted border-border text-foreground"
                             />
                         </Field>
 
-                        <Button onClick={handleSendOTP} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                            Send OTP
+                        <Button 
+                            onClick={handleSendOTP} 
+                            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                            disabled={isLoading || !phoneNumber}
+                        >
+                            {isLoading ? 'Sending OTP...' : 'Send OTP'}
                         </Button>
 
                         <FieldSeparator>Or continue with</FieldSeparator>
@@ -115,14 +195,31 @@ export default function UserLoginPage() {
                                     fill="currentColor"
                                 />
                             </svg>
-                            <span>Login with Google</span>
+                            <span>Continue with Google</span>
                         </Button>
 
                         <FieldDescription className="text-center">
-                            Don't have an account?{' '}
-                            <Link href="#" className="underline text-primary hover:text-primary/80">
-                                Sign up
-                            </Link>
+                            {mode === 'login' ? (
+                                <>
+                                    Don't have an account?{' '}
+                                    <button 
+                                        onClick={() => setMode('signup')} 
+                                        className="underline text-primary hover:text-primary/80"
+                                    >
+                                        Sign up
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    Already have an account?{' '}
+                                    <button 
+                                        onClick={() => setMode('login')} 
+                                        className="underline text-primary hover:text-primary/80"
+                                    >
+                                        Login
+                                    </button>
+                                </>
+                            )}
                         </FieldDescription>
                     </FieldGroup>
                 </CardContent>
