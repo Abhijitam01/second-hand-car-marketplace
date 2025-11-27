@@ -1,77 +1,109 @@
 'use client'
 
-import { Shield, Truck, RefreshCw, Headphones, ArrowRight } from 'lucide-react'
+import { Shield, Truck, RefreshCw, Headphones, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
-const trustPoints = [
+const features = [
   {
     icon: Shield,
-    title: 'Vault Certified',
-    description: '210-point forensic inspection on every vehicle',
-    color: 'from-secondary/20 to-secondary/5',
-    iconBg: 'bg-secondary/20',
-    iconColor: 'text-secondary',
+    title: 'Certified Quality',
+    description: 'Every car undergoes 200+ point inspection',
+    color: 'bg-blue-500',
   },
   {
     icon: Truck,
-    title: 'Global Delivery',
-    description: 'White-glove delivery to your doorstep worldwide',
-    color: 'from-primary/20 to-primary/5',
-    iconBg: 'bg-primary/20',
-    iconColor: 'text-primary',
+    title: 'Free Delivery',
+    description: 'Doorstep delivery across India',
+    color: 'bg-green-500',
   },
   {
     icon: RefreshCw,
-    title: '7-Day Exchange',
-    description: 'No-questions-asked return within 7 days',
-    color: 'from-emerald-500/20 to-emerald-500/5',
-    iconBg: 'bg-emerald-500/20',
-    iconColor: 'text-emerald-400',
+    title: '7-Day Returns',
+    description: 'Not satisfied? Return within 7 days',
+    color: 'bg-purple-500',
   },
   {
     icon: Headphones,
-    title: 'Concierge',
-    description: 'Dedicated advisor for your entire journey',
-    color: 'from-violet-500/20 to-violet-500/5',
-    iconBg: 'bg-violet-500/20',
-    iconColor: 'text-violet-400',
+    title: '24/7 Support',
+    description: 'Expert assistance anytime you need',
+    color: 'bg-orange-500',
   },
 ]
 
 export default function TrustSection() {
   return (
-    <section className="w-full">
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {trustPoints.map((point, index) => (
+    <section className="w-full py-8">
+      {/* Section Header */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-white mb-3">Why Choose Us</h2>
+        <p className="text-white/50 max-w-2xl mx-auto">
+          We make buying your dream car simple, safe, and satisfying
+        </p>
+      </div>
+
+      {/* Features Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {features.map((feature) => (
           <div
-            key={point.title}
-            className={`group relative rounded-3xl bg-gradient-to-br ${point.color} p-6 transition-all duration-300 hover:scale-[1.02] ${
-              index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
-            }`}
+            key={feature.title}
+            className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
           >
-            <div className={`w-12 h-12 rounded-2xl ${point.iconBg} flex items-center justify-center mb-4`}>
-              <point.icon className={`w-5 h-5 ${point.iconColor}`} />
+            <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-5`}>
+              <feature.icon className="w-7 h-7 text-white" />
             </div>
-            <h3 className="font-semibold text-white text-lg mb-2">{point.title}</h3>
-            <p className="text-white/50 text-sm leading-relaxed">{point.description}</p>
+            <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+            <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
           </div>
         ))}
       </div>
 
       {/* CTA Banner */}
-      <div className="mt-6 rounded-3xl bg-gradient-to-r from-white/5 via-white/[0.02] to-white/5 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 className="text-xl font-semibold text-white">Ready to find your next icon?</h3>
-          <p className="text-white/50 mt-1">Join our members-only waitlist for exclusive access.</p>
+      <div className="relative rounded-3xl overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=80"
+            alt="Luxury car"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent" />
         </div>
-        <Link 
-          href="/product"
-          className="flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#020308] font-medium hover:bg-white/90 transition-colors whitespace-nowrap"
-        >
-          Browse Collection
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+
+        {/* Content */}
+        <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Ready to Find Your Dream Car?
+            </h3>
+            <p className="text-white/70 mb-6">
+              Browse our collection of 500+ premium vehicles. Financing available with easy EMI options.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              {['Verified Sellers', 'Easy Financing', 'Warranty Included'].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-white/80 text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link 
+              href="/product"
+              className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-blue-900 font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Browse Cars
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link 
+              href="/contact"
+              className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 border border-white/30 text-white font-semibold hover:bg-white/20 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   )
