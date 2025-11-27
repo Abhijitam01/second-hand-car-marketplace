@@ -1,7 +1,7 @@
 'use client'
 
-import { Star, Heart } from 'lucide-react'
-import React from 'react'
+import { Star, Heart, Sparkles } from 'lucide-react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 export interface IProduct {
@@ -22,6 +22,8 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [isWishlisted, setIsWishlisted] = useState(false)
+
   const formatPrice = (price: number) => {
     if (price >= 10000000) {
       return `₹${(price / 10000000).toFixed(2)} Cr`
@@ -31,53 +33,65 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden text-white transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:-translate-y-1">
+      <div className="group relative rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] overflow-hidden text-white transition-all duration-500 hover:border-white/20 hover:shadow-[0_8px_40px_rgba(127,232,215,0.08)] hover:-translate-y-2">
         {/* Image Container */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <img 
             src={product.image} 
             alt={product.name} 
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-105" 
+            className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           
-          {/* Wishlist Button */}
+          {/* Wishlist Button - Elegant floating design */}
           <button 
-            className="absolute top-3 right-3 p-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all opacity-0 group-hover:opacity-100"
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+            className={`absolute top-4 right-4 p-2.5 rounded-2xl backdrop-blur-xl border transition-all duration-300 
+              ${isWishlisted 
+                ? 'bg-rose-500/20 border-rose-400/30 shadow-[0_0_20px_rgba(244,63,94,0.3)]' 
+                : 'bg-white/[0.08] border-white/[0.12] hover:bg-white/15 hover:border-white/25 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)]'
+              } 
+              opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0`}
+            onClick={(e) => { 
+              e.preventDefault()
+              e.stopPropagation()
+              setIsWishlisted(!isWishlisted)
+            }}
           >
-            <Heart className="w-4 h-4" />
+            <Heart className={`w-4 h-4 transition-all duration-300 ${isWishlisted ? 'text-rose-400 fill-rose-400 scale-110' : 'text-white/80'}`} />
           </button>
 
-          {/* Discount Badge */}
+          {/* Discount Badge - Premium gradient style */}
           {product.discount && (
-            <div className="absolute top-3 left-3 rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-white">
+            <div className="absolute top-4 left-4 flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-500/90 to-teal-500/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-white shadow-[0_4px_20px_rgba(16,185,129,0.3)] border border-emerald-400/20">
+              <Sparkles className="w-3 h-3" />
               {product.discount}
             </div>
           )}
 
-          {/* Rating */}
-          <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs text-white">
-            <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-            <span>{product.rating}</span>
-            <span className="text-white/60">({product.ratingCount})</span>
+          {/* Rating - Elegant pill design */}
+          <div className="absolute bottom-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/40 backdrop-blur-xl border border-white/[0.08] text-xs text-white shadow-lg">
+            <div className="flex items-center justify-center w-4 h-4 rounded-md bg-gradient-to-br from-amber-400 to-orange-500">
+              <Star className="h-2.5 w-2.5 text-white fill-white" />
+            </div>
+            <span className="font-medium">{product.rating}</span>
+            <span className="text-white/50">({product.ratingCount})</span>
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-4 space-y-3">
-          <h3 className="text-lg font-semibold line-clamp-1">{product.name}</h3>
-          <p className="text-sm text-white/60 line-clamp-1">{product.subtitle}</p>
+        <div className="p-5 space-y-3">
+          <h3 className="text-lg font-semibold line-clamp-1 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{product.name}</h3>
+          <p className="text-sm text-white/50 line-clamp-1">{product.subtitle}</p>
           
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold">{formatPrice(product.price)}</span>
-            <span className="text-white/40 line-through text-sm">{formatPrice(product.originalPrice)}</span>
+          <div className="flex items-baseline gap-3 pt-1">
+            <span className="text-xl font-bold bg-gradient-to-r from-[#f4d7b3] to-[#e8c799] bg-clip-text text-transparent">{formatPrice(product.price)}</span>
+            <span className="text-white/30 line-through text-sm">{formatPrice(product.originalPrice)}</span>
           </div>
 
           {product.size && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {product.size.map((size, i) => (
-                <span key={i} className="text-xs rounded-full border border-white/15 bg-white/5 px-3 py-1 text-white/60">
+                <span key={i} className="text-xs rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-white/60 hover:border-white/15 hover:bg-white/[0.08] transition-all cursor-default">
                   {size}
                 </span>
               ))}
