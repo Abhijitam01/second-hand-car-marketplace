@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="group relative rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] overflow-hidden text-white transition-all duration-500 hover:border-white/20 hover:shadow-[0_8px_40px_rgba(127,232,215,0.08)] hover:-translate-y-2">
+      <div className="group relative rounded-3xl border border-border bg-card overflow-hidden text-card-foreground transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:-translate-y-2 dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-white/[0.02] dark:border-white/[0.08] dark:hover:border-white/20 dark:hover:shadow-[0_8px_40px_rgba(127,232,215,0.08)]">
         {/* Image Container */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <img 
@@ -79,19 +79,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Content */}
-        <div className="p-5 space-y-3">
-          <h3 className="text-lg font-semibold line-clamp-1 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{product.name}</h3>
-          <p className="text-sm text-white/50 line-clamp-1">{product.subtitle}</p>
+        <div className="p-5 space-y-3 bg-card dark:bg-transparent">
+          <h3 className="text-lg font-semibold line-clamp-1 text-foreground dark:bg-gradient-to-r dark:from-white dark:to-white/80 dark:bg-clip-text dark:text-transparent">{product.name}</h3>
+          <p className="text-sm text-muted-foreground line-clamp-1">{product.subtitle}</p>
           
           <div className="flex items-baseline gap-3 pt-1">
-            <span className="text-xl font-bold bg-gradient-to-r from-[#f4d7b3] to-[#e8c799] bg-clip-text text-transparent">{formatPrice(product.price)}</span>
-            <span className="text-white/30 line-through text-sm">{formatPrice(product.originalPrice)}</span>
+            <span className="text-xl font-bold text-primary dark:bg-gradient-to-r dark:from-[#f4d7b3] dark:to-[#e8c799] dark:bg-clip-text dark:text-transparent">{formatPrice(product.price)}</span>
+            <span className="text-muted-foreground/60 line-through text-sm">{formatPrice(product.originalPrice)}</span>
           </div>
 
           {product.size && (
             <div className="flex flex-wrap gap-2 pt-1">
               {product.size.map((size, i) => (
-                <span key={i} className="text-xs rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-white/60 hover:border-white/15 hover:bg-white/[0.08] transition-all cursor-default">
+                <span key={i} className="text-xs rounded-lg border border-border bg-muted px-3 py-1.5 text-muted-foreground hover:border-primary/30 hover:bg-accent transition-all cursor-default dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/15 dark:hover:bg-white/[0.08]">
                   {size}
                 </span>
               ))}

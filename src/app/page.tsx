@@ -8,7 +8,7 @@ import TopNavbar from "@/components/user/navigation/top-header";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col min-h-screen w-full bg-[#020308]">
+    <div className="relative flex flex-col min-h-screen w-full bg-background">
       {/* Header */}
       <TopNavbar />
 

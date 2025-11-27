@@ -14,12 +14,12 @@ export default function CollectionGrid() {
       {/* Section Header */}
       <div className="flex items-center justify-between mb-10">
         <div>
-          <h2 className="text-3xl font-bold text-white">Featured Collection</h2>
-          <p className="text-white/50 mt-2">Handpicked luxury vehicles from our vault</p>
+          <h2 className="text-3xl font-bold text-foreground">Featured Collection</h2>
+          <p className="text-muted-foreground mt-2">Handpicked luxury vehicles from our vault</p>
         </div>
         <Link 
           href="/product"
-          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
         >
           <span>View All</span>
           <ArrowRight className="w-4 h-4" />
@@ -50,7 +50,7 @@ export default function CollectionGrid() {
           </button>
 
           {/* Badge */}
-          <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium">
+          <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium">
             Featured
           </div>
 
@@ -128,11 +128,11 @@ export default function CollectionGrid() {
         ].map((stat) => (
           <div
             key={stat.label}
-            className="text-center py-6 px-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+            className="text-center py-6 px-4 rounded-2xl bg-muted border border-border hover:bg-accent transition-colors dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10"
           >
             <span className="text-2xl mb-2 block">{stat.icon}</span>
-            <p className="text-2xl font-bold text-white">{stat.value}</p>
-            <p className="text-sm text-white/50 mt-1">{stat.label}</p>
+            <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+            <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
           </div>
         ))}
       </div>

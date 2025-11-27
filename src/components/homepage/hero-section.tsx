@@ -65,20 +65,20 @@ export default function HeroBanner() {
         </div>
 
         {/* Search Box */}
-        <div className="bg-white rounded-full p-2 flex items-center max-w-2xl mx-auto shadow-2xl">
+        <div className="bg-card rounded-full p-2 flex items-center max-w-2xl mx-auto shadow-2xl">
           {/* Brand Dropdown */}
           <div className="relative flex-1">
             <button
               onClick={() => setBrandDropdownOpen(!brandDropdownOpen)}
-              className="w-full flex items-center justify-between px-6 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-full transition-colors"
+              className="w-full flex items-center justify-between px-6 py-3 text-left text-foreground hover:bg-muted rounded-full transition-colors"
             >
               <span className="text-sm md:text-base">{selectedBrand}</span>
-              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${brandDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${brandDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Dropdown Menu */}
             {brandDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 max-h-64 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-card rounded-2xl shadow-xl border border-border py-2 z-50 max-h-64 overflow-y-auto">
                 {brands.map((brand) => (
                   <button
                     key={brand}
@@ -86,8 +86,8 @@ export default function HeroBanner() {
                       setSelectedBrand(brand)
                       setBrandDropdownOpen(false)
                     }}
-                    className={`w-full px-6 py-3 text-left text-sm hover:bg-gray-50 transition-colors ${
-                      selectedBrand === brand ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                    className={`w-full px-6 py-3 text-left text-sm hover:bg-muted transition-colors ${
+                      selectedBrand === brand ? 'bg-accent text-primary' : 'text-foreground'
                     }`}
                   >
                     {brand}
@@ -99,7 +99,7 @@ export default function HeroBanner() {
 
           {/* Search Button */}
           <Link href="/product">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-6 font-medium flex items-center gap-2">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 font-medium flex items-center gap-2">
               <Search className="w-4 h-4" />
               <span className="hidden sm:inline">Search</span>
             </Button>
@@ -124,8 +124,8 @@ export default function HeroBanner() {
         </div>
       </div>
 
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#020308] to-transparent" />
+      {/* Bottom Gradient Fade - Theme Aware */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   )
 }

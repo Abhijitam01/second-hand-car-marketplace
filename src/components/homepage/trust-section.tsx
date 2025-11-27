@@ -8,25 +8,25 @@ const features = [
     icon: Shield,
     title: 'Certified Quality',
     description: 'Every car undergoes 200+ point inspection',
-    color: 'bg-blue-500',
+    color: 'bg-primary',
   },
   {
     icon: Truck,
     title: 'Free Delivery',
     description: 'Doorstep delivery across India',
-    color: 'bg-green-500',
+    color: 'bg-secondary',
   },
   {
     icon: RefreshCw,
     title: '7-Day Returns',
     description: 'Not satisfied? Return within 7 days',
-    color: 'bg-purple-500',
+    color: 'bg-tertiary',
   },
   {
     icon: Headphones,
     title: '24/7 Support',
     description: 'Expert assistance anytime you need',
-    color: 'bg-orange-500',
+    color: 'bg-chart-4',
   },
 ]
 
@@ -35,8 +35,8 @@ export default function TrustSection() {
     <section className="w-full py-8">
       {/* Section Header */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-white mb-3">Why Choose Us</h2>
-        <p className="text-white/50 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-foreground mb-3">Why Choose Us</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           We make buying your dream car simple, safe, and satisfying
         </p>
       </div>
@@ -46,13 +46,13 @@ export default function TrustSection() {
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+            className="group p-6 rounded-2xl bg-card border border-border hover:bg-accent hover:border-primary/20 transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 dark:hover:border-white/20"
           >
             <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-5`}>
-              <feature.icon className="w-7 h-7 text-white" />
+              <feature.icon className="w-7 h-7 text-primary-foreground" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-            <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
+            <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
           </div>
         ))}
       </div>
@@ -66,7 +66,7 @@ export default function TrustSection() {
             alt="Luxury car"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent dark:from-blue-900/90 dark:via-blue-900/70" />
         </div>
 
         {/* Content */}
@@ -91,7 +91,7 @@ export default function TrustSection() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
               href="/product"
-              className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-blue-900 font-semibold hover:bg-gray-100 transition-colors"
+              className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-primary font-semibold hover:bg-gray-100 transition-colors dark:text-blue-900"
             >
               Browse Cars
               <ArrowRight className="w-4 h-4" />

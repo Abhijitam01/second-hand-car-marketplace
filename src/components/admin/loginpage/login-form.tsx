@@ -47,10 +47,10 @@ export function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md space-y-6 ">
-      <h2 className="text-3xl font-bold text-tertiary mt-5 text-center leading-snug">
+    <div className="w-full max-w-md space-y-6">
+      <h2 className="text-3xl font-bold text-primary mt-5 text-center leading-snug">
         Welcome to <br />
-        <span className="text-sm font-medium text-gray-600">
+        <span className="text-sm font-medium text-muted-foreground">
           Velaire House — Orchestrate your provenance desk
         </span>
       </h2>
@@ -63,12 +63,12 @@ export function LoginForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium text-gray-700">Email</FormLabel>
+                <FormLabel className="text-sm font-medium text-foreground">Email</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Mail className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+                    <Mail className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
-                      className="pl-3 h-10 border-0 border-b border-gray-300 text-gray-500 rounded-none focus:border-blue-500 "
+                      className="pl-3 h-10 border-0 border-b border-border text-foreground rounded-none focus:border-primary bg-transparent"
                       {...field}
                       placeholder="Enter your email"
                     />
@@ -84,20 +84,20 @@ export function LoginForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium text-gray-700">Password</FormLabel>
+                <FormLabel className="text-sm font-medium text-foreground">Password</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      className="pl-3 pr-10 border-0 border-b border-gray-300 rounded-none text-gray-500 hover:text-gray-700 focus:border-blue-500"
+                      className="pl-3 pr-10 border-0 border-b border-border rounded-none text-foreground hover:text-foreground focus:border-primary bg-transparent"
                       disabled={isLoading}
                       {...field}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5" />
@@ -114,12 +114,12 @@ export function LoginForm() {
 
           <Button
             type="submit"
-            className="w-full h-12 bg-tertiary hover:bg-indigo-700 text-white font-medium text-base"
+            className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base"
             disabled={isLoading}
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-foreground mr-2"></div>
                 Signing in...
               </div>
             ) : (
@@ -128,14 +128,14 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
-      <Separator />
+      <Separator className="bg-border" />
       {/* Footer note */}
 
-      <p className="text-center text-xs text-gray-500 mt-8">
+      <p className="text-center text-xs text-muted-foreground mt-8">
         By signing in, you agree to our{' '}
         <a
           href="/terms-of-service"
-          className="text-indigo-600 hover:text-indigo-800 hover:underline"
+          className="text-primary hover:text-primary/80 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -144,7 +144,7 @@ export function LoginForm() {
         and{' '}
         <a
           href="/privacy-policy"
-          className="text-indigo-600 hover:text-indigo-800 hover:underline"
+          className="text-primary hover:text-primary/80 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -153,7 +153,7 @@ export function LoginForm() {
         .
       </p>
 
-      <p className="text-center text-xs text-gray-500 mt-8">
+      <p className="text-center text-xs text-muted-foreground mt-8">
         ©2025 Velaire House. All rights reserved
       </p>
     </div>
