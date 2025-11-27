@@ -166,3 +166,46 @@
 .neon-glow {
   box-shadow: 0 0 35px rgba(127, 232, 215, 0.45);
 }
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blue accent for buttons */
+.btn-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-blue:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
