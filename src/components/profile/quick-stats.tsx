@@ -27,50 +27,50 @@ interface QuickStatsProps {
 export default function QuickStats({ user }: QuickStatsProps) {
   return (
     <div>
-      <Card className="border shadow-none">
+      <Card className="border border-border bg-card shadow-none">
         <CardContent className="p-6">
-          <h3 className="text-sm font-semibold text-slate-900 mb-4">Activity Overview</h3>
+          <h3 className="text-sm font-semibold text-foreground mb-4">Activity Overview</h3>
           <div className="space-y-4">
             {/* Total Orders */}
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <ShoppingBasket className="h-4 w-4 text-blue-600" />
+                <div className="h-9 w-9 rounded-lg bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center">
+                  <ShoppingBasket className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Total Orders</p>
-                  <p className="text-xs text-slate-600">All time</p>
+                  <p className="text-sm font-medium text-foreground">Total Orders</p>
+                  <p className="text-xs text-muted-foreground">All time</p>
                 </div>
               </div>
-              <span className="text-lg font-semibold text-slate-900">{user.totalOrders}</span>
+              <span className="text-lg font-semibold text-foreground">{user.totalOrders}</span>
             </div>
 
             {/* Total Spent */}
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-emerald-50 flex items-center justify-center">
-                  <IndianRupee className="h-4 w-4 text-emerald-600" />
+                <div className="h-9 w-9 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Total Spent</p>
-                  <p className="text-xs text-slate-600">All time</p>
+                  <p className="text-sm font-medium text-foreground">Total Spent</p>
+                  <p className="text-xs text-muted-foreground">All time</p>
                 </div>
               </div>
-              <span className="text-lg font-semibold text-slate-900">₹{user.totalSpent.toLocaleString()}</span>
+              <span className="text-lg font-semibold text-foreground">₹{user.totalSpent.toLocaleString()}</span>
             </div>
 
             {/* Wishlist Items */}
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-rose-50 flex items-center justify-center">
-                  <Heart className="h-4 w-4 text-rose-600" />
+                <div className="h-9 w-9 rounded-lg bg-rose-500/10 dark:bg-rose-500/20 flex items-center justify-center">
+                  <Heart className="h-4 w-4 text-rose-600 dark:text-rose-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Wishlist Items</p>
-                  <p className="text-xs text-slate-600">Saved products</p>
+                  <p className="text-sm font-medium text-foreground">Wishlist Items</p>
+                  <p className="text-xs text-muted-foreground">Saved products</p>
                 </div>
               </div>
-              <span className="text-lg font-semibold text-slate-900">{user.wishlistItems}</span>
+              <span className="text-lg font-semibold text-foreground">{user.wishlistItems}</span>
             </div>
           </div>
         </CardContent>

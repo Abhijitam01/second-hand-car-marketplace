@@ -71,13 +71,13 @@ export default function WishListPage() {
   ]
 
   return (
-    <div className="w-full min-h-screen bg-gray-50">
+    <div className="w-full min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2">
-          <h2 className="text-2xl font-semibold text-gray-800">Your Wishlist</h2>
-          <p className="text-gray-600 text-sm sm:text-base">
-            Items in wishlist: <span className="font-medium text-gray-800">{wishlistItems.length}</span>
+          <h2 className="text-2xl font-semibold text-foreground">Your Wishlist</h2>
+          <p className="text-muted-foreground text-sm sm:text-base">
+            Items in wishlist: <span className="font-medium text-foreground">{wishlistItems.length}</span>
           </p>
         </div>
 

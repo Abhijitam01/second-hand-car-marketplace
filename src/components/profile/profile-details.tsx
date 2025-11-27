@@ -48,20 +48,20 @@ export default function ProfileDetails({ userProfile }: ProfileDetailsProps) {
 
   return (
     <div className="lg:col-span-8 xl:col-span-9">
-      <Card className="border shadow-none">
+      <Card className="border border-border bg-card shadow-none">
         <Tabs defaultValue="personal" className="w-full">
           {/* Tab Navigation */}
-          <div className="border-b border-slate-200 px-6">
+          <div className="border-b border-border px-6">
             <TabsList className="h-14 bg-transparent p-0 border-0">
-              <TabsTrigger value="personal"  className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-slate-600 data-[state=active]:text-slate-900 data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-slate-900">
+              <TabsTrigger value="personal" className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary">
                 <User className="h-4 w-4 mr-2" />
                 Personal Info
               </TabsTrigger>
-              <TabsTrigger value="address" className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-slate-600 data-[state=active]:text-slate-900 data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-slate-900">
+              <TabsTrigger value="address" className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary">
                 <MapPin className="h-4 w-4 mr-2" />
                 Address
               </TabsTrigger>
-              <TabsTrigger value="security"  className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-slate-600 data-[state=active]:text-slate-900 data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-slate-900">
+              <TabsTrigger value="security" className="relative h-14 rounded-none border-0 bg-transparent px-6 pb-3 pt-3 font-medium text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary">
                 <Lock className="h-4 w-4 mr-2" />
                 Security
               </TabsTrigger>
@@ -148,15 +148,15 @@ export default function ProfileDetails({ userProfile }: ProfileDetailsProps) {
           {/* Security */}
           <TabsContent value="security" className="p-8 m-0">
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-slate-900">Security Settings</h3>
-              <p className="text-sm text-slate-600 mt-1">Manage your password and security preferences</p>
+              <h3 className="text-lg font-semibold text-foreground">Security Settings</h3>
+              <p className="text-sm text-muted-foreground mt-1">Manage your password and security preferences</p>
             </div>
             <div className="space-y-6">
               <TextField label="Current Password" type="password" placeholder="Enter your current password" />
               <TextField label="New Password" type="password" placeholder="Enter your new password" />
               <TextField label="Confirm New Password" type="password" placeholder="Confirm your new password" />
               <div className="pt-4">
-                <Button className="bg-secondary hover:bg-slate-800 text-white">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                   Update Password
                 </Button>
               </div>
@@ -185,14 +185,14 @@ const TextField = ({
   placeholder?: string
 }) => (
   <div className="space-y-2">
-    <Label className="text-sm font-medium text-slate-900">{label}</Label>
+    <Label className="text-sm font-medium text-foreground">{label}</Label>
     <Input
       type={type}
       value={value}
       onChange={e => onChange?.(e.target.value)}
       disabled={disabled}
       placeholder={placeholder}
-      className="h-10 border-slate-300 focus:border-slate-900 focus:ring-slate-900"
+      className="h-10 border-border bg-muted focus:border-primary focus:ring-primary text-foreground"
     />
   </div>
 )
@@ -214,19 +214,19 @@ const SectionHeader = ({
 }) => (
   <div className="flex items-center justify-between mb-8">
     <div>
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-      <p className="text-sm text-slate-600 mt-1">{description}</p>
+      <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+      <p className="text-sm text-muted-foreground mt-1">{description}</p>
     </div>
     {!isEditing ? (
-      <Button onClick={onEdit} variant="outline" className="bg-secondary hover:text-white text-white">
+      <Button onClick={onEdit} variant="outline" className="bg-primary hover:bg-primary/90 text-primary-foreground border-primary">
         <Edit className="h-4 w-4 mr-2" /> Edit
       </Button>
     ) : (
       <div className="flex gap-2">
-        <Button onClick={onSave} className="bg-secondary hover:bg-slate-800 text-white">
+        <Button onClick={onSave} className="bg-primary hover:bg-primary/90 text-primary-foreground">
           <SaveAll className="h-4 w-4 mr-2" /> Save
         </Button>
-        <Button onClick={onCancel} variant="outline" className="border-slate-300">
+        <Button onClick={onCancel} variant="outline" className="border-border text-foreground hover:bg-accent">
           Cancel
         </Button>
       </div>

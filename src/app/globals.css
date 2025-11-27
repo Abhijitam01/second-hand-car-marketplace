@@ -374,3 +374,240 @@ html.dark {
   outline: none;
   box-shadow: 0 0 0 2px var(--ring);
 }
+
+/* ============================================
+   ELEGANT ICON UTILITIES
+   Premium styling for icons throughout the app
+   ============================================ */
+
+/* Icon container with gradient background */
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-container:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+/* Icon glow effect */
+.icon-glow {
+  position: relative;
+}
+
+.icon-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(12px);
+  opacity: 0.4;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.icon-glow:hover::after {
+  opacity: 0.6;
+}
+
+/* Premium gradient icon backgrounds */
+.icon-gradient-teal {
+  background: linear-gradient(135deg, #7fe8d7 0%, #14b8a6 100%);
+  box-shadow: 0 8px 25px rgba(127, 232, 215, 0.35);
+}
+
+.icon-gradient-rose {
+  background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+  box-shadow: 0 8px 25px rgba(244, 63, 94, 0.35);
+}
+
+.icon-gradient-amber {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+  box-shadow: 0 8px 25px rgba(251, 146, 60, 0.35);
+}
+
+.icon-gradient-violet {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  box-shadow: 0 8px 25px rgba(167, 139, 250, 0.35);
+}
+
+.icon-gradient-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.35);
+}
+
+.icon-gradient-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 8px 25px rgba(52, 211, 153, 0.35);
+}
+
+/* Elegant glass icon container */
+.icon-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.icon-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Light mode glass */
+:root .icon-glass {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+:root .icon-glass:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Wishlist heart animation */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.heart-active {
+  animation: heartbeat 0.4s ease-in-out;
+}
+
+/* Badge pulse effect */
+@keyframes badge-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(127, 232, 215, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(127, 232, 215, 0);
+  }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s infinite;
+}
+
+/* Premium shimmer effect for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Floating animation for icons */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.icon-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Elegant focus ring */
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--ring);
+}
+
+/* Premium text gradients */
+.text-gradient-premium {
+  background: linear-gradient(135deg, #f4d7b3 0%, #e8c799 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #7fe8d7 0%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle border glow on hover */
+.border-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.border-glow:hover {
+  box-shadow: 0 0 20px rgba(127, 232, 215, 0.15);
+}
+
+:root .border-glow:hover {
+  box-shadow: 0 0 20px rgba(26, 77, 92, 0.15);
+}
+
+/* Icon button ripple effect */
+.icon-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-ripple::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.3s;
+}
+
+.icon-ripple:active::before {
+  transform: scale(2);
+  opacity: 1;
+  transition: transform 0s, opacity 0s;
+}
+
+/* Elegant icon hover lift */
+.icon-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Icon spin animation */
+@keyframes icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.icon-spin {
+  animation: icon-spin 1s linear infinite;
+}
+
+/* Subtle icon breathe animation */
+@keyframes icon-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.icon-breathe {
+  animation: icon-breathe 2s ease-in-out infinite;
+}
